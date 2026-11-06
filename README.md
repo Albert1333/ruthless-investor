@@ -90,40 +90,18 @@ npm run build
 
 ## Публичный GitHub
 
-Для исходников создан приватный репозиторий Sites; статус отправки кода указан в отчёте о проверках. Публичный GitHub ещё не создан; в среде подготовки GitHub CLI отсутствует. Репозиторий Sites не заменяет публичный GitHub для жюри.
+Исходники опубликованы: https://github.com/Albert1333/ruthless-investor
 
-**Без GitHub CLI:** войдите в GitHub, откройте меню `+` → `New repository`, укажите `ruthless-investor`, выберите `Public`. Не добавляйте README, лицензию или .gitignore при создании: эти файлы уже есть локально. Нажмите `Create repository`, скопируйте HTTPS-адрес. Выполните из корня проекта:
-
-```sh
-git status
-git check-ignore .env.local .dev.vars
-git add .
-git commit -m "Build Ruthless Investor training app"
-git remote add github https://github.com/YOUR_ACCOUNT/ruthless-investor.git
-git push -u github main
-```
-
-Замените `YOUR_ACCOUNT`. Если изменений нет, пропустите commit. Git может открыть вход в GitHub; используйте поддерживаемую авторизацию или персональный токен через менеджер учётных данных, не вставляя токен в remote URL.
-
-**Альтернатива с GitHub CLI:** установите `gh` (на Windows, например, `winget install --id GitHub.cli --exact`, либо установщик GitHub CLI), перезапустите терминал и выполните:
+Клонирование проекта:
 
 ```sh
-gh auth login
-git status
-git check-ignore .env.local .dev.vars
-git add .
-git commit -m "Build Ruthless Investor training app"
-gh repo create ruthless-investor --public --source=. --remote=github --push
+git clone https://github.com/Albert1333/ruthless-investor.git
+cd ruthless-investor
 ```
 
-Если изменений для коммита нет, переходите к `gh repo create`. Remote `github` сохраняет отдельный remote Sites. Если имя занято, выберите другое. Для уже созданного пустого репозитория:
+Для отправки изменений используйте GitHub Desktop или `git push origin main` после коммита. Владельцу нужно пригласить соавторов в Settings → Collaborators. API-ключ LLM для редактирования исходников не нужен; каждый участник использует собственную авторизацию GitHub.
 
-```sh
-git remote add github https://github.com/YOUR_ACCOUNT/ruthless-investor.git
-git push -u github main
-```
-
-Замените `YOUR_ACCOUNT`. Если remote существует, проверьте `git remote -v` и используйте `git remote set-url github ...`. Перед публикацией просмотрите `git diff --cached`: локальные секреты и данные сессий не должны попасть в Git. URL считается готовым только после push и проверки доступа без авторизации.
+Секреты, локальная база и node_modules исключены из Git. Приватный репозиторий Sites используется отдельно для публикации сайта.
 
 ## Развёртывание
 
@@ -140,6 +118,7 @@ git push -u github main
 Общая аналитика не собирается. Конверсия второго раунда и средняя разница баллов — предлагаемые метрики, не измеренные результаты.
 
 Для сдачи нужны: проверенная ссылка с доступом жюри, публичный GitHub, подключённый и проверенный AI, [one-pager](docs/ONE_PAGER.md). [Демо-сценарий](docs/DEMO_SCRIPT.md) включает запасной план.
+
 
 
 
